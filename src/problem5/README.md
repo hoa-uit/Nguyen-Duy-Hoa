@@ -25,6 +25,8 @@ Service was inspired by [Onion architecture](https://dev.to/jnavez/make-your-mic
 
 **PREREQUISITE**: **docker and nodejs should be existing in your device and make sure your in problem5 directory**
 
+_let cd to problem5 directory before run below step. thanks_
+
 Installing dependencies:
 
 ```bash

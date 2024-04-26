@@ -1,0 +1,154 @@
+info:
+  title: Book Service
+  contact: 
+    name: Nguyen Duy Hoa
+    email: hoan42532@gmail.com
+  version: v1.0
+  description: >-
+    Book Service - A service for managing books
+paths:
+  '/books': 
+    post:
+      tags: 
+        - Get books by filter API Endpoints
+      summary: Gets list books by filter, if we don't pass any filter, it will return all books
+      responses:
+        '200': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/book'
+          description: The API service call completed successfully
+        '400': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Invalid Request
+        '401': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorised
+        '403': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        '404': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Resource Not Available
+        '429': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+        '500': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+        '503': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavilable
+        '504': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Server Timeout
+      parameters:
+        - $ref: '#/components/parameters/book'
+      description: Gets the submitted transactions list of an account
+
+openapi: 3.0.1
+servers:
+  - url: 'http://localhost:8080/v1'
+components:
+  schemas:
+    error:
+      type: object
+      required:
+        - errorId
+        - message
+      properties:
+        details:
+          type: string
+          example: 'book id is missing in the request'
+          description: >-
+            Additional details for the error. Mandatory for client side 4xx
+            error.
+        errorId:
+          type: string
+          example: UPPER_CASE
+          description: 'Human readable, unique name of the error'
+        message:
+          type: string
+          example: Bad Request
+          description: Message descibing the Error.
+      description: Error message type
+    book: 
+      type: object
+      required:
+        - id
+        - title
+        - authors
+        - genre
+      properties:
+        id:
+          type: string
+          example: 123
+          description: The unique identifier of the book
+        title:
+          type: string
+          example: 'The Great Gatsby'
+          description: The title of the book
+        authors: 
+          type: array
+          items: 
+            type: string
+          example: 
+            - 'F. Scott Fitzgerald'
+          description: The authors of the book
+        genre:
+          type: string
+          example: 'Fiction'
+          description: The genre of the book
+  parameters:
+    book:
+      name: book
+      in: body
+      required: true
+      schema:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 123
+            description: The unique identifier of the book
+          title:
+            type: string
+            example: 'The Great Gatsby'
+            description: The title of the book
+          authors: 
+            type: array
+            items: 
+              type: string
+            example: 
+              - 'F. Scott Fitzgerald'
+            description: The authors of the book
+          genre:
+            type: string
+            example: 'Fiction'
+            description: The genre of the book
+      description: The book object to be created

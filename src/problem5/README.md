@@ -22,7 +22,8 @@ Service was inspired by [Onion architecture](https://dev.to/jnavez/make-your-mic
     -   [Logger](#logger)
 
 ## How to run
-__PREREQUISITE__: __docker and nodejs should be existing in your device and make sure your in problem5 directory__
+
+**PREREQUISITE**: **docker and nodejs should be existing in your device and make sure your in problem5 directory**
 
 Installing dependencies:
 
@@ -56,11 +57,9 @@ Healthcheck call:
 curl --localtion --request GET 'http://localhost:8080/health'
 ```
 
-Start with container
+Please reference to `src/problem5/api/book.v1.swagger.yaml` to see apis documentation
 
-```bash
-TBU
-```
+Hey dude, i also put postman collection in `src/problem5/api/postman-collection`. Enjoy ^.^
 
 ## Architecture and Design
 

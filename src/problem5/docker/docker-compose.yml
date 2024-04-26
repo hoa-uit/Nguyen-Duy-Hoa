@@ -1,0 +1,31 @@
+version: '3.2'
+
+services: 
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=books
+    healthcheck:
+      test: [
+        'CMD-SHELL', 'pg_isready -U admin'
+      ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+    
+  flyway:
+    image: flyway/flyway
+    volumes:
+      - ./sql:/flyway/sql
+    environment:
+      - FLYWAY_URL=jdbc:postgresql://postgres:5432/books
+      - FLYWAY_USER=admin
+      - FLYWAY_PASSWORD=1234
+    command: ["migrate"]
+    depends_on: 
+      postgres: 
+        condition: service_healthy

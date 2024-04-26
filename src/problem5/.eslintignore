@@ -1,0 +1,12 @@
+**/node-modules/**
+# /node-modules/* in the project root is ignore by default
+
+#build artifact
+dist/*
+coverage/*
+# data definition files
+**/*.d.ts
+#3rd party lib
+/src/public
+#custom definition files
+/src/types/

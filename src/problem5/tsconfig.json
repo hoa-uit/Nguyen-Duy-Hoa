@@ -1,0 +1,61 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2017",
+            "dom", //refer https://github.com/jindw/xmldom/issues/220 "ES2020.Promise" 
+        ],
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "esModuleInterop": true,
+        "module": "commonjs",
+        "sourceMap": true,
+        "target": "es2017",
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "baseUrl": ".",
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "emitDecoratorMetadata": true,
+        "checkJs": false,
+        "outDir": "./dist",
+        "paths": {
+            "@application/*": [
+                "src/application/*"
+            ],
+            "@config/*": [
+                "src/config/*"
+            ],
+            "@domain/*": [
+                "src/domain/*"
+            ],
+            "@repository/*": [
+                "src/repository/*"
+            ],
+            "@__test__/*": [
+                "test/*"
+            ],
+            "@server/*": [
+                "src/*"
+            ],
+            "@common/*": [
+                "src/common/*"
+            ],
+            "@controller/*": [
+                "src/controller/*"
+            ]
+        }
+    },
+    "include": [
+        "src",
+        "package.json",
+        "yarn.lock",
+        "test"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

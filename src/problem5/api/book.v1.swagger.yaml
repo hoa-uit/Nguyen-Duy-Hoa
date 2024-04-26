@@ -70,7 +70,245 @@ paths:
       parameters:
         - $ref: '#/components/parameters/book'
       description: Gets the submitted transactions list of an account
-
+  '/book':
+    post:
+      tags: 
+        - Create a book API Endpoints
+      summary: Create a book
+      responses:
+        '204': 
+          description: The API service call completed successfully
+        '400': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Invalid Request
+        '401': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorised
+        '403': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        '404': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Resource Not Available
+        '429': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+        '500': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+        '503': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavilable
+        '504': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Server Timeout
+      parameters:
+        - $ref: '#/components/parameters/createdBook'
+      description: Create a book
+  '/book/:id':
+    get:
+      tags: 
+        - Get a book by id API Endpoints
+      summary: Get a book by id
+      responses:
+        '200': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/book'
+          description: The API service call completed successfully
+        '400': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Invalid Request
+        '401': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorised
+        '403': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        '404': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Resource Not Available
+        '429': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+        '500': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+        '503': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavilable
+        '504': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Server Timeout
+      parameters:
+        - $ref: '#/components/parameters/id'
+      description: Get a book by id
+    patch:
+      tags: 
+        - Update a book by id API Endpoints
+      summary: Update a book by id
+      responses:
+        '204': 
+          description: The API service call completed successfully
+        '400': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Invalid Request
+        '401': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorised
+        '403': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        '404': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Resource Not Available
+        '429': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+        '500': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+        '503': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavilable
+        '504': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Server Timeout
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/book'
+      description: Update a book by id
+    delete:
+      tags: 
+        - Delete a book by id API Endpoints
+      summary: Delete a book by id
+      responses:
+        '204': 
+          description: The API service call completed successfully
+        '400': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Invalid Request
+        '401': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorised
+        '403': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        '404': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Resource Not Available
+        '429': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+        '500': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+        '503': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Service Unavilable
+        '504': 
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Server Timeout
+      parameters:
+        - $ref: '#/components/parameters/id'
+      description: Delete a book by id
 openapi: 3.0.1
 servers:
   - url: 'http://localhost:8080/v1'
@@ -107,7 +345,7 @@ components:
       properties:
         id:
           type: string
-          example: 123
+          example: 2f8a2b7b-b01c-4946-aa05-0be54fe396f1
           description: The unique identifier of the book
         title:
           type: string
@@ -134,7 +372,7 @@ components:
         properties:
           id:
             type: string
-            example: 123
+            example: 2f8a2b7b-b01c-4946-aa05-0be54fe396f1
             description: The unique identifier of the book
           title:
             type: string
@@ -152,3 +390,38 @@ components:
             example: 'Fiction'
             description: The genre of the book
       description: The book object to be created
+    createdBook:
+      name: book
+      in: body
+      required: true
+      schema:
+        type: object
+        required:
+          - title
+          - authors
+          - genre
+        properties:
+          title:
+            type: string
+            example: 'The Great Gatsby'
+            description: The title of the book
+          authors: 
+            type: array
+            items: 
+              type: string
+            example: 
+              - 'F. Scott Fitzgerald'
+            description: The authors of the book
+          genre:
+            type: string
+            example: 'Fiction'
+            description: The genre of the book
+      description: The book object to be created
+    id: 
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 'uuid format: 2f8a2b7b-b01c-4946-aa05-0be54fe396f1'
+        description: The unique identifier of the book

@@ -1,0 +1,113 @@
+info:
+  title: Live Score API
+  version: 1.0.0
+  description: This is a simple API to get live scores of users.
+  contact:
+    name: Nguyen Duy Hoa
+    email: hoan42532@gmail.com
+paths:
+  /score:
+    get:
+      summary: Get live score
+      description: Get top 10 score of users
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  score:
+                    type: integer
+                    example: 100
+                  user:
+                    type: string
+                    example: "John Doe"
+                  userId:
+                    type: string
+                    example: "123456"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal Server Error"
+  /score/:userId:
+    post:
+      summary: Update score
+      description: Update score of a user
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                score:
+                  type: integer
+                  example: 100
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Score updated"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Bad Request"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User not found"
+        403: 
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Forbidden"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal Server Error"
+  
+      

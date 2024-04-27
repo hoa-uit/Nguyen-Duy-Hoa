@@ -1,3 +1,10 @@
+Table of content:
+
+- [Break out requirement](#break-out-requirement)
+- [Solution design diagram](#solution-design-diagram)
+- [Work break down and estimation](#work-break-down)
+- []
+
 ## Break out requirement
 
 1. design a live score board server, show top 10 highest score users
@@ -53,29 +60,45 @@ I prefer T-shirt sizing to estimate effort to do the task
 
 ![alt text](assets/tShirtSizingEstimate.png)
 
-___DoD: Definition of done___
+**_DoD: Definition of done_**
 
-1. Setup/Scaffolding codebase, infrastructure, CI/CD pipeline (__M__)
+1. Setup/Scaffolding codebase, infrastructure, CI/CD pipeline (**M**)
 
 - Overview we have 2 service: Score service and Auth service
 - Initialize and setup skeleton codebase like: setup folder structure, eslint, prettier, typescript, jest, connect database, redis. DoD: 2 service are ready for dev build feature
 - Setup infrastructure on aws, HAproxy, CI/CD pipeline. DoD: Service can be deployed, HAproxy work properly, CI/CD pipeline can auto build/test service/deploy service
 
-2. Develop Auth service(__S__)
+2. Develop Auth service(**S**)
+
 - After have code base, we build api `/login` to authenticate user:
-    - Validate request from user, check if have enough info to precess further like: userName, password,..
-    - Call into user table to validate those credentials
-    - Sign a token(JWT) and return to user with status 200 OK
+  - Validate request from user, check if have enough info to precess further like: userName, password,..
+  - Call into user table to validate those credentials
+  - Sign a token(JWT) and return to user with status 200 OK
+  - Store token in redis, because it is a value use quite frequently
+- Build api `/logout` to destroy token of user:
+  - destroy JWT
+  - remove from redis
 - Build `/authorisation` to verify user has permission to update score or not
-    - Validate request from user, check if have enough info to process further like: token(JWT)
-    - Decode JWT and obtain userName, Role, Permission, ...
-    - Return 200 OK if user has permission. Otherwise, return 403 forbidden.
+  - Validate request from user, check if have enough info to process further like: token(JWT)
+  - Decode JWT and obtain userName, Role, Permission, ...
+  - Return 200 OK if user has permission. Otherwise, return 403 forbidden.
 
 3. Develop Score service
+
 - Build `score/:userId` to update score of user
+  - Retrieve token from redis, call to Auth service to validate permission to update score
   - Update new score for user into Score table
   - Retrieve top 10 highest scores, return back to FE to re-display score board, and update back to redis
-- Build `/score` to display top 10 user's score 
+- Build `/score` to display top 10 user's score
   - No need to authorisation to se score board, just login is enough
   - Retrieve result from redis to display
+
 ## Sequence Diagram
+
+## Thing needs to improve
+
+- Load/Stress testing for those api
+- Plan to handle fault tolerance
+- Complete sequence diagram
+- Handle DDOS
+- Spike other approach like use NoSQL database, use event based to handle async instead of api,...

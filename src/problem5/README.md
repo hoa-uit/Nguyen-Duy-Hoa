@@ -1,5 +1,7 @@
 # books-service
 
+Requirement want me to create some apis to interact with a resource, it's quite ambiguous. That why book service was chosen.
+
 ## Table of Contents
 
 Service was inspired by [Onion architecture](https://dev.to/jnavez/make-your-microservices-tastier-by-cooking-them-with-a-sweet-onion-34n2)
@@ -20,6 +22,7 @@ Service was inspired by [Onion architecture](https://dev.to/jnavez/make-your-mic
     -   [Building and Development](#building-and-development)
     -   [Testing](#testing)
     -   [Logger](#logger)
+    - [Improvement](#improvement)
 
 ## How to run
 
@@ -132,3 +135,11 @@ Note this will also generate a coverage report
 
 we use winston for logging.
 Standard loggings can be found:
+
+## improvement
+
+alot of thing should be refactor and enhance
+- security
+- testing
+- detailed solution design
+- ...
